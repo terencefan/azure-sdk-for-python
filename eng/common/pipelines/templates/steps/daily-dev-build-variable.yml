@@ -10,6 +10,7 @@ steps:
       arguments: >
         -ServiceDirectory ${{parameters.ServiceDirectory}}
         -OutDirectory $(Build.ArtifactStagingDirectory)/PackageInfo
+        -AddDevVersion
       pwsh: true
       workingDirectory: $(Pipeline.Workspace)
     displayName: Dump Package properties
@@ -21,4 +22,4 @@ steps:
     }
     echo "##vso[task.setvariable variable=SetDevVersion]$setDailyDevBuild"
   displayName: "Setup Versioning Properties"
-  condition: and(succeeded(), eq(variables['SetDevVersion'], ''))
+  #condition: and(succeeded(), eq(variables['SetDevVersion'], ''))
